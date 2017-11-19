@@ -257,7 +257,7 @@ void *oilProcess(){
 		sleep(current->oilDuration);
 
 		pthread_mutex_lock(&oillock);
-		current->repairServiced++;
+		current->oilServiced++;
 		count++;
 		OILREADY++;
 		pthread_cond_signal(&oil_cond);

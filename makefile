@@ -2,7 +2,7 @@ OBJS = scanner.o customer.o queue.o sll.o
 FLAGS = gcc -Wall -g -std=c99 -pthread
 
 main: $(OBJS)
-	$(FLAGS) main.c -o main $(OBJS)
+	$(FLAGS) main.c -o proj $(OBJS)
 customer.o: customer.c customer.h
 	$(FLAGS) -c customer.c
 scanner.o: scanner.c scanner.h

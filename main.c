@@ -173,8 +173,11 @@ void *customerProcess(void *cust){
 	pthread_mutex_lock(&lock);
 	if(!sizeQueue(mechLot)){
 		enqueue(mechLot, (void *) this);
-	} else if(sizeQueue(mechLot) == MAXCUSTOMERS) {
+	} else if(sizeQueue(mechLot) > MAXCUSTOMERS - 2) {
+		//This is minus two because this only hits if there's a customer currently in the mechanic
 		printf("Customer %s - (MZ) leaves busy car maintenance shop\n", this->name);
+		pthread_cond_signal(&mech_queue_cond);
+		pthread_mutex_unlock(&lock);
 		pthread_exit(0);
 	} 
 	else {
